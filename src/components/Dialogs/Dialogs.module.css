@@ -1,0 +1,20 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 4fr 10fr;
+}
+
+.dialogsItems {
+
+}
+
+.dialog {
+  padding: 5px;
+}
+
+.massages {
+
+}
+
+.massage {
+  padding: 5px;
+}
