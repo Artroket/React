@@ -3,7 +3,12 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+    
+    let PostsElements = props.posts.map( post => <Post massage={post.massage} likes={post.likes}/> );
+
+
     return (
         <div className={s.postBlock}> 
                 <h3>My posts</h3>
@@ -16,9 +21,7 @@ const MyPosts = () => {
                 </div>    
           </div>
                 <div className={s.posts}>
-                   <Post massage='Hi bitches' likes='66'/>
-                   <Post massage='There is my first post' likes='4'/>
-                   <Post/>
+                   {PostsElements}
                 </div>
             </div>
     );
