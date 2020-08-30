@@ -1,18 +1,27 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
 
 
 const Dialogs = (props) => {
     
-    
-    let DialogsElements = props.state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);    
+    let state= props.dialogsPage;
 
-   
+    let DialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);    
 
-    let MassagesElements = props.state.massages.map(massage => <Massage massage={massage.massage} />)
+    let MassagesElements = state.massages.map(massage => <Massage massage={massage.massage} />);
+
+    let newMassageBody = state.newMassageBody;
+
+    let onSendMassageClick = () => {
+        props.sendMassage();
+    }
+
+    let onNewMassageChange = (e) => {
+        let body = e.target.value;
+        props.updateNewMassageBody(body);
+    }
 
     return (
         <div className={s.dialogs}>
@@ -20,7 +29,11 @@ const Dialogs = (props) => {
                 {DialogsElements}
             </div>
             <div className={s.massages}>
-                {MassagesElements}
+                <div>{MassagesElements}</div>
+                <div>
+                   <div> <textarea placeholder='Enter your massage' value = {newMassageBody}  onChange={onNewMassageChange}/> </div>
+                   <div> <button onClick={onSendMassageClick}>Send</button></div>
+                </div>
             </div>
         </div>
     );

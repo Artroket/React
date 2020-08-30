@@ -1,5 +1,7 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 
 let store = {
     _state: {
@@ -23,12 +25,14 @@ let store = {
                 { id: 2, name: 'Andrew' },
                 { id: 3, name: 'Nastya' },
                 { id: 4, name: 'Olya' }
-            ]
-        }
+            ],
+            newMassageBody: "" 
+        },
+        sidebar: {}
     },
+
+
     _callSubscriber() { },
-
-
 
     getState() {
         return this._state;
@@ -57,19 +61,13 @@ let store = {
 
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            this._addPost();
-        } else if (action.type === UPDATE_NEW_POST_TEXT ) {
-            this._updateNewPostText(action.newText);
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._callSubscriber(this._state);         
     }
 }
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-
-
-export const updateNewPostTextActionCreator = (text) => 
-    ({ type: UPDATE_NEW_POST_TEXT, newText: text })
 
 
 
