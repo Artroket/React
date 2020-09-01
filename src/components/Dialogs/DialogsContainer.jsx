@@ -1,23 +1,26 @@
 import React from 'react';
 import { updateNewMassageBodyActionCreator, sendMassageActionCreator } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
 
-const DialogsContainer = (props) => {
-    
-    let state= props.store.getState().dialogsPage;
-
-    let onSendMassageClick = () => {
-        props.store.dispatch(sendMassageActionCreator());
+const mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage
     }
-
-    let onNewMassageChange = (body) => {
-        props.store.dispatch(updateNewMassageBodyActionCreator(body));
-    }
-
-    return (<Dialogs updateNewMassageBody ={onNewMassageChange} sendMassage={onSendMassageClick} dialogsPage={state} />
-         );
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewMassageBody: (body)=> {
+            dispatch(updateNewMassageBodyActionCreator(body));
+        },
+        sendMassage: () => {
+            dispatch(sendMassageActionCreator());
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
