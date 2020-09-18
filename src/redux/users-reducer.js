@@ -4,12 +4,7 @@ const SET_USERS = 'SET-USERS';
 
 let initialState = {
     users: [
-        {id: 0, photoURL: 'https://bipbap.ru/wp-content/uploads/2018/02/OiM0hEX6M.jpg',
-         followed: true, fullName: 'ya ya', status: 'jsdhfl', location: { city: 'Dnepr', country: 'Ukraine'}},
-        {id: 1, photoURL: 'https://cs16planet.ru/steam-avatars/images/avatar2700.jpg', 
-        followed: true, fullName: 'ne ya', status: 'nsd.sd', location: { city: 'Kiev', country: 'Ukraine'}},
-        {id: 2, photoURL: 'https://klike.net/uploads/posts/2019-03/medium/1551512888_2.jpg',
-         followed: false, fullName: 'ahaha haha', status: 'mldfsn ', location: { city: 'Jerusalem', country: 'Israel'}}
+   
      ]
 }
 
