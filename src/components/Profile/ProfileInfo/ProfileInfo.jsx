@@ -1,8 +1,12 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Preloader from '../../common/Preloader/Preloader';
 
 
 const ProfileInfo = (props) => {
+    if (!props.profile){
+        return <Preloader/>
+    }
     return (
         <div>
             <div>
@@ -10,7 +14,8 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.descriptionBlock}>
 
-                <img height='150px' width='250px' src='https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png' />
+                <img height='150px' width='250px' src={props.profile.photos.large} />
+              
 
             </div>
         </div>
