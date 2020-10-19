@@ -15,17 +15,15 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 
 const App = (props) => {
 
-
-
   return (
     
     <div className='app-wrapper'>
       <HeaderContainer /> 
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile/:userId?' render={() => <ProfileContainer store={props.store}/>}/>
-        <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
-        <Route path='/users' render={() => <UsersContainer store={props.store}/> }  />  
+        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+        <Route path='/dialogs' render={() => <DialogsContainer />}/>
+        <Route path='/users' render={() => <UsersContainer /> }  />  
         <Route path='/news' component={News}/>
         <Route path='/music' component={Music}/>
         <Route path='/login' component={Login}/>

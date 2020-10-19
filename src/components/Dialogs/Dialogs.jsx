@@ -8,9 +8,9 @@ const Dialogs = (props) => {
     
     let state= props.dialogsPage;
 
-    let DialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);    
+    let DialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>);    
 
-    let MassagesElements = state.massages.map(massage => <Massage massage={massage.massage} />);
+    let MassagesElements = state.massages.map(massage => <Massage massage={massage.massage} key={massage.id}/>);
 
     let newMassageBody = state.newMassageBody;
 

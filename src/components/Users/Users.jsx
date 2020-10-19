@@ -6,7 +6,6 @@ import * as axios from 'axios';
 import { usersAPI } from '../../api/api';
 
 let Users =  (props) => {
-
     let pagesCount = Math.ceil(props.totalUsersCount/ props.pageSize);
     let pages = [];
     for (let i=1; i <= pagesCount; i++){
@@ -16,7 +15,7 @@ let Users =  (props) => {
     return <div> 
             <div>
                 {pages.map(p=>{
-                   return  <span className={props.currentPage === p  && styles.selectedPage} 
+                   return  <span key={p} className={props.currentPage === p ? styles.selectedPage:undefined} 
                    onClick = {(e)=>{
                        props.onPageChanged(p);
                        }}>{p}</span>

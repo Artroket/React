@@ -3,11 +3,11 @@ import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to={"/profile"}>Profile</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/dialogs">Messages</NavLink>
