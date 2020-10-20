@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
+import {reduxForm, Field} from 'redux-form';
 
 
 const Dialogs = (props) => {
@@ -12,17 +13,11 @@ const Dialogs = (props) => {
 
     let MassagesElements = state.massages.map(massage => <Massage massage={massage.massage} key={massage.id}/>);
 
-    let newMassageBody = state.newMassageBody;
 
-    let onSendMassageClick = () => {
-        props.sendMassage();
+    const addNewMassage = (values) => {
+        debugger;
+        props.sendMassage(values.newMassageBody);
     }
-
-    let onNewMassageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMassageBody(body);
-    }
-
 
     return (
         <div className={s.dialogs}>
@@ -31,14 +26,23 @@ const Dialogs = (props) => {
             </div>
             <div className={s.massages}>
                 <div>{MassagesElements}</div>
-                <div>
-                   <div> <textarea placeholder='Enter your massage' value = {newMassageBody}  onChange={onNewMassageChange}/> </div>
-                   <div> <button onClick={onSendMassageClick}>Send</button></div>
-                </div>
+                <SendMassageFormRedux onSubmit={addNewMassage}/>
             </div>
         </div>
     );
 }
 
+const SendMassageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div> <Field component="textarea" name={"newMassageBody"} placeholder='Enter your massage'/> </div>
+            <div> <button>Send</button></div>
+        </form>
+    )
+}
+
+const SendMassageFormRedux = reduxForm({
+    form: "dialogSendMassageForm"
+})(SendMassageForm)
 
 export default Dialogs;
