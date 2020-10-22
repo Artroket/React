@@ -3,6 +3,8 @@ import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
 import {reduxForm, Field} from 'redux-form';
+import { Textarea } from '../common/FormsControls/FormsControls';
+import { required, maxLengthCreator } from '../../utils/validators/validators';
 
 
 const Dialogs = (props) => {
@@ -32,10 +34,12 @@ const Dialogs = (props) => {
     );
 }
 
+const maxLength100 = maxLengthCreator(100)
+
 const SendMassageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div> <Field component="textarea" name={"newMassageBody"} placeholder='Enter your massage'/> </div>
+            <div> <Field component={Textarea} validate={[required, maxLength100]} name={"newMassageBody"} placeholder='Enter your massage'/> </div>
             <div> <button>Send</button></div>
         </form>
     )
